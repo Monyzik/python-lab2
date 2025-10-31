@@ -24,9 +24,9 @@ def test_cat_jpg(fs: FakeFilesystem, fake_logger_info_call: Mock):
 
 
 def test_cat_is_dir(fs: FakeFilesystem):
-    fs.create_dir("test_dir")
+    fs.create_dir("test-dir")
     with pytest.raises(IsDirectoryError):
-        cat(CommandFromString("cat test_dir/"))
+        cat(CommandFromString("cat test-dir/"))
 
 
 def test_cat_invalid_path():

@@ -400,5 +400,5 @@ shell.log
 .trash/*
 .trash
 .undo_history.jsonl
-test_dir/*
-test_dir
+test-dir/*
+test-dir
