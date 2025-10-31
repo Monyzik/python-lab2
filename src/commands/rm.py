@@ -34,6 +34,8 @@ def rm(command: Command, ask: bool = True, undo_logging: bool = True) -> None:
         base_name = Path(command.args[0]).stem
         suffix = Path(command.args[0]).suffix
         trash_path = os.path.join(TRASH_DIR, base_name + '_' + str(datetime.now().timestamp()) + suffix)
+        if not os.path.exists(TRASH_DIR):
+            os.makedirs(TRASH_DIR)
         if os.path.isfile(command.args[0]):
             shutil.copy(command.args[0], trash_path)
         else:

@@ -26,7 +26,7 @@ def test_ls(fs: FakeFilesystem, fake_logger_info_call: Mock):
     assert str(datetime.now().year) in out
 
 
-def test_permissions_in_files(fs: FakeFilesystem, fake_logger_error_call: Mock):
+def test_ls_permissions_in_files(fs: FakeFilesystem, fake_logger_error_call: Mock):
     fs.create_file("hello world.txt", contents="hello world")
     fs.chmod("hello world.txt", 0)
     ls(CommandFromString('ls -l /'))

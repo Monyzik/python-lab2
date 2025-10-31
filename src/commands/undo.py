@@ -1,4 +1,5 @@
 import json
+import os
 
 from src.classes.command import Command
 from src.commands.cp import cp
@@ -17,6 +18,8 @@ def undo(command: Command):
     """
     if command.args:
         raise InvalidCountOfArguments(command.main_command)
+    if not os.path.exists(UNDO_HISTORY_FILE):
+        raise NoCommandToUndo()
     with open(UNDO_HISTORY_FILE, 'r') as file:
         lines = file.readlines()
         if not lines:

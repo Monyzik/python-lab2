@@ -18,7 +18,7 @@ def zip_dir(command: Command, zip_format="zip") -> None:
         raise IsFileError(command.main_command, command.args[0])
     if not os.path.exists(command.args[0]):
         raise InvalidFilePath(command.args[0])
-    shutil.make_archive(root_dir=command.args[0], format=zip_format, base_name=command.args[1])
+    shutil.make_archive(base_dir=command.args[0], format=zip_format, base_name=command.args[1])
 
 
 def tar(command: Command) -> None:

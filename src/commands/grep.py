@@ -4,7 +4,7 @@ import re
 
 from src.classes.command import Command
 from src.common.constants import COMMAND_OUTPUT_LOGGER_NAME
-from src.classes.exeptions import InvalidCountOfArguments, IsDirectoryError
+from src.classes.exeptions import InvalidCountOfArguments, IsDirectoryError, InvalidFilePath
 
 
 def grep(command: Command) -> None:
@@ -16,6 +16,8 @@ def grep(command: Command) -> None:
     """
     if len(command.args) != 2:
         raise InvalidCountOfArguments(command.main_command)
+    if not os.path.exists(command.args[1]):
+        raise InvalidFilePath(command.args[1])
     if 'r' not in command.params and os.path.isdir(command.args[1]):
         raise IsDirectoryError(command.main_command, command.args[1])
     ignore_case = False
