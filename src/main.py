@@ -1,20 +1,20 @@
-import os
 import sys
 
-from src.set_default_logging_config import set_default_logging_config
-from src.shell import Shell
+from src.classes.shell import Shell
+from src.common.set_default_logging_config import set_default_logging_config
 
 
 def main() -> None:
     """
-    Обязательная составляющая программ, которые сдаются. Является точкой входа в приложение
+    Запускает основную часть программы
     :return: Данная функция ничего не возвращает
     """
     set_default_logging_config()
-    shell = Shell(cur_dir="~")
+    # shell = Shell(cur_dir="~")
+    shell = Shell()  # TODO delete this
     while sys.stdin:
         try:
-            command = input(f"[{os.getcwd()}] ")
+            command = input(f"[{shell.get_cur_dir()}] ")
             if command == 'exit':
                 break
             shell.complete_command(command)

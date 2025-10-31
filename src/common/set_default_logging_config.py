@@ -1,11 +1,15 @@
 import logging
 import sys
 
-from src.constants import DATAFORMAT, LOG_FILE, COMMAND_INPUT_LOGGER_NAME, ERROR_LOGGER_NAME, \
+from src.common.constants import DATAFORMAT, LOG_FILE, COMMAND_INPUT_LOGGER_NAME, ERROR_LOGGER_NAME, \
     COMMAND_OUTPUT_LOGGER_NAME, HISTORY_FILE, FILE_LOGGER_NAME
 
 
 def set_default_logging_config():
+    """
+    Устанавливает настройки логгера
+    :return: Ничего не возвращает
+    """
     command_input_logger = logging.getLogger(COMMAND_INPUT_LOGGER_NAME)
     file_handler = logging.FileHandler(LOG_FILE)
     file_handler.setFormatter(logging.Formatter("[%(asctime)s] %(message)s", datefmt=DATAFORMAT))
@@ -29,16 +33,12 @@ def set_default_logging_config():
     stream_handler = logging.StreamHandler(sys.stdout)
     stream_handler.setLevel(logging.INFO)
     stream_handler.setFormatter(logging.Formatter("%(message)s"))
-    file_handler = logging.FileHandler(LOG_FILE)
-    file_handler.setFormatter(
-        logging.Formatter("[%(asctime)s] %(levelname)s OK Command complete without errors", datefmt=DATAFORMAT))
-    command_output_logger.addHandler(file_handler)
     command_output_logger.addHandler(stream_handler)
     command_output_logger.setLevel(logging.INFO)
 
     file_logger = logging.getLogger(FILE_LOGGER_NAME)
     file_handler = logging.FileHandler(LOG_FILE)
     file_handler.setFormatter(
-        logging.Formatter("[%(asctime)s] %(levelname)s OK Command complete without errors", datefmt=DATAFORMAT))
+        logging.Formatter("[%(asctime)s] %(levelname)s %(message)s", datefmt=DATAFORMAT))
     file_logger.addHandler(file_handler)
     file_logger.setLevel(logging.INFO)

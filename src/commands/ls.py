@@ -3,15 +3,21 @@ import os
 import stat
 import time
 
-from tabulate import tabulate
+from tabulate import tabulate # type: ignore
 
-from src.command import Command
-from src.constants import COMMAND_OUTPUT_LOGGER_NAME, ERROR_LOGGER_NAME
-from src.exeptions import InvalidAccessForFile, InvalidFilePath, IsFileError
+from src.classes.command import Command
+from src.common.constants import COMMAND_OUTPUT_LOGGER_NAME, ERROR_LOGGER_NAME
+from src.classes.exeptions import InvalidAccessForFile, InvalidFilePath, IsFileError
 
 
 def ls(command: Command) -> None:
-    result = []
+    """
+    Выводит информацию о текущем каталоге, либо о каталогах, которые были переданы в аргументы функции.
+    При параметре -l выводит информацию в виде: [название файла] [права доступа] [размер в байтах] [дата изменения фйла]
+    :param command: Команда, которая была написана пользователем
+    :return: Ничего не возвращает
+    """
+    result: list[list[str]] = list()
     if command.args:
         for path in command.args:
             if not os.path.exists(path):
@@ -24,12 +30,10 @@ def ls(command: Command) -> None:
 
     output_logger = logging.getLogger(COMMAND_OUTPUT_LOGGER_NAME)
     output = []
-    for path in result:
-        for item in path:
+    for paths in result:
+        for item in paths:
             file_name = os.path.basename(item)
             if 'l' in command.params:
-                if not os.path.exists(item):
-                    raise InvalidFilePath(item)
                 if not os.access(item, os.R_OK):
                     logging.getLogger(ERROR_LOGGER_NAME).error(InvalidAccessForFile(item))
                     continue

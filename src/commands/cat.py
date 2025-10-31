@@ -3,16 +3,16 @@ import os
 import pathlib
 import sys
 
-from src.command import Command
-from src.constants import COMMAND_OUTPUT_LOGGER_NAME
-from src.exeptions import InvalidCountOfArguments, InvalidFilePath, IsDirectoryError
+from src.classes.command import Command
+from src.common.constants import COMMAND_OUTPUT_LOGGER_NAME
+from src.classes.exeptions import InvalidCountOfArguments, InvalidFilePath, IsDirectoryError
 
 
 def cat(command: Command) -> None:
     """
-    Открывает файл, изначально пытается открыть в формате utf-8, если не выходит, выводит содержимое в ISO-8859-1
-    :param command: Команда, которая была написана пользователем
-    :return: Ничего не возвращает
+    Открывает файл, изначально пытается открыть в формате utf-8, если не выходит, выводит содержимое в байтах.
+    :param command: Команда, которая была написана пользователем.
+    :return: Ничего не возвращает.
     """
     if len(command.args) != 1:
         raise InvalidCountOfArguments(command.main_command)
@@ -25,4 +25,3 @@ def cat(command: Command) -> None:
         logging.getLogger(COMMAND_OUTPUT_LOGGER_NAME).info(path.read_text(encoding="utf-8"))
     except UnicodeDecodeError:
         logging.getLogger(COMMAND_OUTPUT_LOGGER_NAME).info(sys.stdout.buffer.write(path.read_bytes()))
-        # sys.stdout.buffer.write(path.read_bytes())

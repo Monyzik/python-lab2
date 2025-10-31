@@ -1,37 +1,46 @@
 import os
+
 import pytest
-from src.command import Command
-from src.exeptions import InvalidFilePath, InvalidCountOfArguments, IsFileError
-from src.constants import COMMANDS
+from pyfakefs.fake_filesystem import FakeFilesystem
 
-# shell = Shell()
-cd = COMMANDS['cd']
-start_dir = os.getcwd()
+from src.classes.command import CommandFromString
+from src.classes.exeptions import InvalidFilePath, InvalidCountOfArguments, IsFileError
+from src.commands.cd import cd
 
 
-def test_cd():
-    cd(Command("cd test_dir"))
-    assert os.getcwd() == os.path.join(start_dir, "test_dir")
-    cd(Command("cd ."))
-    assert os.getcwd() == os.path.join(start_dir, "test_dir")
-    cd(Command("cd"))
+def test_cd(fs: FakeFilesystem):
+    fs.create_dir('test')
+    cd(CommandFromString("cd test"))
+    assert os.getcwd() == '/test'
+    cd(CommandFromString("cd ."))
+    assert os.getcwd() == "/test"
+    cd(CommandFromString("cd .."))
+    assert os.getcwd() == '/'
+
+
+def test_cd_home_dir():
+    cd(CommandFromString("cd"))
     assert os.getcwd() == os.path.expanduser("~")
-    cd(Command(f"cd {os.path.join(start_dir, 'test_dir')}"))
-    assert os.getcwd() == os.path.join(start_dir, "test_dir")
-    cd(Command("cd .."))
-    assert os.getcwd() == start_dir
+    cd(CommandFromString("cd ~"))
+    assert os.getcwd() == os.path.expanduser("~")
 
 
 def test_cd_invalid_path():
     with pytest.raises(InvalidFilePath):
-        cd(Command("cd abacaba"))
+        cd(CommandFromString("cd abacaba"))
+
 
 def test_cd_invalid_argument_count():
     with pytest.raises(InvalidCountOfArguments):
-        cd(Command("cd .. .."))
+        cd(CommandFromString("cd .. .."))
     with pytest.raises(InvalidCountOfArguments):
-        cd(Command("cd . -l abacaba"))
+        cd(CommandFromString("cd . -l abacaba"))
+    with pytest.raises(InvalidCountOfArguments):
+        cd(CommandFromString("cd . -l . -l"))
 
-def test_cd_is_file():
+
+def test_cd_is_file(fs: FakeFilesystem):
+    fs.create_dir('test')
+    fs.create_file(os.path.join("test", 'test.txt'))
     with pytest.raises(IsFileError):
-        cd(Command("cd test_dir/test_dir1/test_file1.txt"))
+        cd(CommandFromString("cd test/test.txt"))

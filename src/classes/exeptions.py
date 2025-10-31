@@ -31,3 +31,8 @@ class IsFileError(Exception):
 class ImpossibleToDelete(Exception):
     def __init__(self, path: str):
         super().__init__(f"Невозможно удалить {path}")
+
+
+class NoCommandToUndo(Exception):
+    def __init__(self):
+        super().__init__("Невозможно применить undo: недостаточно команд")

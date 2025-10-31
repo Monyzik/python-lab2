@@ -397,3 +397,8 @@ cython_debug/
 
 shell.log
 .history
+.trash/*
+.trash
+.undo_history.jsonl
+test_dir/*
+test_dir
