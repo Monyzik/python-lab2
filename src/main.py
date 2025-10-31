@@ -10,8 +10,7 @@ def main() -> None:
     :return: Данная функция ничего не возвращает
     """
     set_default_logging_config()
-    # shell = Shell(cur_dir="~")
-    shell = Shell()  # TODO delete this
+    shell = Shell(current_dir="~")
     while sys.stdin:
         try:
             command = input(f"[{shell.get_cur_dir()}] ")
