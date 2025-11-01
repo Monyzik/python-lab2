@@ -1,8 +1,8 @@
 import logging
 
-from src.classes.command import Command
+from src.system.command import Command
 from src.common.constants import HISTORY_FILE, COMMAND_OUTPUT_LOGGER_NAME
-from src.classes.exeptions import InvalidCountOfArguments
+from src.system.exeptions import InvalidCountOfArguments
 
 
 def history(command: Command):

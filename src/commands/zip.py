@@ -1,8 +1,8 @@
 import os.path
 import shutil
 
-from src.classes.command import Command
-from src.classes.exeptions import InvalidCountOfArguments, IsFileError, InvalidFilePath
+from src.system.command import Command
+from src.system.exeptions import InvalidCountOfArguments, IsFileError, InvalidFilePath
 
 
 def zip_dir(command: Command, zip_format="zip") -> None:

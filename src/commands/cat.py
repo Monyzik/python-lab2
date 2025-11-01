@@ -3,9 +3,9 @@ import os
 import pathlib
 import sys
 
-from src.classes.command import Command
+from src.system.command import Command
 from src.common.constants import COMMAND_OUTPUT_LOGGER_NAME
-from src.classes.exeptions import InvalidCountOfArguments, InvalidFilePath, IsDirectoryError
+from src.system.exeptions import InvalidCountOfArguments, InvalidFilePath, IsDirectoryError
 
 
 def cat(command: Command) -> None:

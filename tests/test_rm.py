@@ -4,8 +4,8 @@ from unittest.mock import Mock
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 
-from src.classes.command import CommandFromString
-from src.classes.exeptions import InvalidFilePath, IsDirectoryError, InvalidCountOfArguments, ImpossibleToDelete
+from src.system.command import CommandFromString
+from src.system.exeptions import InvalidFilePath, IsDirectoryError, InvalidCountOfArguments, ImpossibleToDelete
 from src.commands.rm import rm
 
 

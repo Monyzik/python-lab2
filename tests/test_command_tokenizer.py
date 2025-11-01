@@ -1,6 +1,6 @@
 import pytest
 
-from src.classes.command import CommandFromString
+from src.system.command import CommandFromString
 
 
 def test_command_tokenizer():

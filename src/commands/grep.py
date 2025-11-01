@@ -2,9 +2,9 @@ import logging
 import os
 import re
 
-from src.classes.command import Command
+from src.system.command import Command
 from src.common.constants import COMMAND_OUTPUT_LOGGER_NAME
-from src.classes.exeptions import InvalidCountOfArguments, IsDirectoryError, InvalidFilePath
+from src.system.exeptions import InvalidCountOfArguments, IsDirectoryError, InvalidFilePath
 
 
 def grep(command: Command) -> None:

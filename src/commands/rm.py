@@ -3,10 +3,10 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
-from src.classes.command import Command
+from src.system.command import Command
 from src.common.constants import TRASH_DIR
-from src.classes.exeptions import InvalidCountOfArguments, InvalidFilePath, IsDirectoryError, ImpossibleToDelete
-from src.classes.json_logger import JsonLogger
+from src.system.exeptions import InvalidCountOfArguments, InvalidFilePath, IsDirectoryError, ImpossibleToDelete
+from src.system.json_logger import JsonLogger
 
 
 def rm(command: Command, ask: bool = True, undo_logging: bool = True) -> None:

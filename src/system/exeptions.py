@@ -36,3 +36,8 @@ class ImpossibleToDelete(Exception):
 class NoCommandToUndo(Exception):
     def __init__(self):
         super().__init__("Невозможно применить undo: недостаточно команд")
+
+
+class InvalidParameters(Exception):
+    def __init__(self, command: str, param: str):
+        super().__init__(f"Недопустимый параметр: '{param}', для команды {command}")

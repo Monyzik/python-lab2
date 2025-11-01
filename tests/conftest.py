@@ -1,5 +1,5 @@
 from unittest.mock import Mock
-import src.classes.json_logger
+import src.system.json_logger
 import src.commands.history
 import src.common.constants
 import src.common.set_default_logging_config
@@ -32,4 +32,4 @@ def fake_project_dir(monkeypatch):
     monkeypatch.setattr(src.commands.history, "HISTORY_FILE", "/.history")
     monkeypatch.setattr(src.commands.rm, "TRASH_DIR", "/.trash")
     monkeypatch.setattr(src.commands.undo, "UNDO_HISTORY_FILE", "/.undo_history.jsonl")
-    monkeypatch.setattr(src.classes.json_logger, "UNDO_HISTORY_FILE", "/.undo_history.jsonl")
+    monkeypatch.setattr(src.system.json_logger, "UNDO_HISTORY_FILE", "/.undo_history.jsonl")

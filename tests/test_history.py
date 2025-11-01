@@ -1,9 +1,9 @@
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 
-from src.classes.command import CommandFromString
-from src.classes.exeptions import InvalidCountOfArguments
-from src.classes.shell import Shell
+from src.system.command import CommandFromString
+from src.system.exeptions import InvalidCountOfArguments
+from src.system.shell import Shell
 from src.commands.history import history
 from src.common.set_default_logging_config import set_default_logging_config
 

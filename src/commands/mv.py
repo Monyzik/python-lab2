@@ -1,9 +1,9 @@
 import os
 import shutil
 
-from src.classes.command import Command
-from src.classes.exeptions import InvalidCountOfArguments, InvalidFilePath
-from src.classes.json_logger import JsonLogger
+from src.system.command import Command
+from src.system.exeptions import InvalidCountOfArguments, InvalidFilePath
+from src.system.json_logger import JsonLogger
 
 
 def mv(command: Command, undo_logging: bool = True) -> None:

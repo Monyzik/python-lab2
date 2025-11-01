@@ -1,13 +1,13 @@
 import json
 import os
 
-from src.classes.command import Command
+from src.system.command import Command
 from src.commands.cp import cp
 from src.commands.mv import mv
 from src.commands.rm import rm
 from src.common.constants import UNDO_HISTORY_FILE
-from src.classes.exeptions import InvalidCountOfArguments, NoCommandToUndo
-from src.enums.commands import Commands
+from src.system.exeptions import InvalidCountOfArguments, NoCommandToUndo
+from src.system.commands import Commands
 
 
 def undo(command: Command):

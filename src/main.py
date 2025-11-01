@@ -1,6 +1,6 @@
 import sys
 
-from src.classes.shell import Shell
+from src.system.shell import Shell
 from src.common.set_default_logging_config import set_default_logging_config
 
 

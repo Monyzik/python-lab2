@@ -2,8 +2,8 @@ import os.path
 import shutil
 from pathlib import Path
 
-from src.classes.command import Command
-from src.classes.exeptions import InvalidCountOfArguments, IsDirectoryError, InvalidFilePath
+from src.system.command import Command
+from src.system.exeptions import InvalidCountOfArguments, IsDirectoryError, InvalidFilePath
 
 
 def unzip(command: Command, file_format="zip") -> None:

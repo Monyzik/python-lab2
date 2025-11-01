@@ -7,7 +7,7 @@ from src.common.constants import DATAFORMAT, LOG_FILE, COMMAND_INPUT_LOGGER_NAME
 
 def set_default_logging_config():
     """
-    Устанавливает настройки логгера
+    Устанавливает настройки лога
     :return: Ничего не возвращает
     """
     command_input_logger = logging.getLogger(COMMAND_INPUT_LOGGER_NAME)

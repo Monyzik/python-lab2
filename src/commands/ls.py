@@ -5,9 +5,9 @@ import time
 
 from tabulate import tabulate # type: ignore
 
-from src.classes.command import Command
+from src.system.command import Command
 from src.common.constants import COMMAND_OUTPUT_LOGGER_NAME, ERROR_LOGGER_NAME
-from src.classes.exeptions import InvalidAccessForFile, InvalidFilePath, IsFileError
+from src.system.exeptions import InvalidAccessForFile, InvalidFilePath, IsFileError
 
 
 def ls(command: Command) -> None:

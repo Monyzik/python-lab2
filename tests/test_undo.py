@@ -3,9 +3,9 @@ import os
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 
-from src.classes.command import CommandFromString
-from src.classes.exeptions import InvalidCountOfArguments, NoCommandToUndo
-from src.classes.shell import Shell
+from src.system.command import CommandFromString
+from src.system.exeptions import InvalidCountOfArguments, NoCommandToUndo
+from src.system.shell import Shell
 from src.commands.rm import rm
 from src.commands.undo import undo
 from src.common.set_default_logging_config import set_default_logging_config

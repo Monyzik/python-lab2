@@ -1,7 +1,7 @@
 import os
 
-from src.classes.command import Command
-from src.classes.exeptions import InvalidCountOfArguments, InvalidFilePath, IsFileError
+from src.system.command import Command
+from src.system.exeptions import InvalidCountOfArguments, InvalidFilePath, IsFileError
 
 
 def cd(command: Command) -> None:

@@ -4,8 +4,8 @@ from unittest.mock import Mock
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 
-from src.classes.command import CommandFromString
-from src.classes.exeptions import InvalidCountOfArguments, IsFileError, InvalidFilePath, IsDirectoryError
+from src.system.command import CommandFromString
+from src.system.exeptions import InvalidCountOfArguments, IsFileError, InvalidFilePath, IsDirectoryError
 from src.commands.unzip import unzip, untar
 from src.commands.zip import zip_dir, tar
 

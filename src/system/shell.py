@@ -1,10 +1,10 @@
 import logging
 import os
 
-from src.classes.command import CommandFromString
-from src.classes.exeptions import InvalidCommandName
+from src.system.command import CommandFromString
+from src.system.exeptions import InvalidCommandName, InvalidParameters
 from src.common.constants import COMMAND_INPUT_LOGGER_NAME, ERROR_LOGGER_NAME, FILE_LOGGER_NAME
-from src.common.register import COMMANDS_FUNCTIONS
+from src.common.register import COMMANDS_FUNCTIONS, COMMANDS_PARAMS
 
 
 class Shell:
@@ -35,6 +35,10 @@ class Shell:
         if command.main_command not in COMMANDS_FUNCTIONS:
             self.error_logger.error(InvalidCommandName(command.main_command))
             return
+        for param in command.params:
+            if param not in COMMANDS_PARAMS[command.main_command]:
+                self.error_logger.error(InvalidParameters(command.main_command, param))
+                return
         try:
             COMMANDS_FUNCTIONS[command.main_command](command)
             self.file_logger.info("Done successfully")
