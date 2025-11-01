@@ -1,8 +1,6 @@
-import logging
 import os
 
 from src.classes.command import Command
-from src.common.constants import FILE_LOGGER_NAME
 from src.classes.exeptions import InvalidCountOfArguments, InvalidFilePath, IsFileError
 
 
@@ -14,7 +12,6 @@ def cd(command: Command) -> None:
     """
     if not command.args:
         os.chdir(os.path.expanduser("~"))
-        logging.getLogger(FILE_LOGGER_NAME).info("")
         return
     if len(command.args) > 1:
         raise InvalidCountOfArguments(command.main_command)
